@@ -101,7 +101,7 @@ def next_state(init_state):
 
     return new_state
 
-def main(width=20, height=20, fps=5):
+def main(width=50, height=50, fps=5):
     state = random_state(width, height) 
     
     sleep_time = 1 / fps
