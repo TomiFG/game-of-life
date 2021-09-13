@@ -79,3 +79,24 @@ def count_neighbors(state, x, y):
     count += state[y][x-1] + state[y][x+1]
     count += state[y+1][x-1] + state[y+1][x] + state[y+1][x+1]
     return count
+    
+    
+def next_state(init_state):
+
+    new_state = dead_state(len(init_state[0]), len(init_state))
+
+    for y in range(len(init_state)): 
+        for x in range(len(init_state[0])):
+
+            count = count_neighbors(init_state, x, y)
+
+            if init_state[y][x] == 1:
+                if count==2 or count==3:
+                    new_state[y][x] = 1
+                continue
+            
+            if count==3:
+                new_state[y][x] = 1
+
+    return new_state
+
