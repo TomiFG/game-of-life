@@ -1,4 +1,5 @@
 from random import randint
+import time
 
 def dead_state(width=0, height=0):
 
@@ -100,3 +101,15 @@ def next_state(init_state):
 
     return new_state
 
+def main(width=20, height=20, fps=5):
+    state = random_state(width, height) 
+    
+    sleep_time = 1 / fps
+
+    while True:
+        render(state)
+        state = next_state(state)
+        time.sleep(sleep_time)
+
+if __name__ == '__main__':
+    main()
