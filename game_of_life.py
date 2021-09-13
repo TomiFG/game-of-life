@@ -36,51 +36,24 @@ def render(state):
 
     print(divider)
     
+
 def count_neighbors(state, x, y):
-    # counts the number of 'live cells' around a given one
-    count = 0    
+    count = 0
 
-    if x==0:
-        if y==0:
-            count = state[y][x+1] + state[y+1][x] + state[y+1][x+1]
-            return count
-        if y==len(state)-1:
-            count = state[y-1][x] + state[y-1][x+1] + state[y][x+1]
-            return count
+    for i in range(y-1, y+2):
+        # ignore cells outside the board
+        if i<0 or i>=len(state): continue
 
-        count += state[y-1][x] + state[y-1][x+1]
-        count += state[y][x+1]
-        count += state[y+1][x] + state[y+1][x+1]
-        return count
-
-    if x==len(state[0])-1:
-        if y==0:
-            count = state[y][x-1] + state[y+1][x-1] + state[y+1][x]
-            return count
-        if y==len(state)-1:
-            count = state[y-1][x-1] + state[y-1][x] + state[y][x-1]
-            return count
-
-        count += state[y-1][x-1] + state[y-1][x]
-        count += state[y][x-1]
-        count += state[y+1][x-1] + state[y+1][x]
-        return count
-
-    if y==0:
-        count += state[y][x-1] + state[y][x+1]
-        count += state[y+1][x-1] + state[y+1][x] + state[y+1][x+1]
-        return count
+        for j in range(x-1, x+2):
+            # ignore cells outside the board
+            if j<0 or j>=len(state[0]): continue
+            # ignore the cell of which we're counting it's neighbors
+            if i==y and j==x: continue
+            
+            count += state[i][j]
     
-    if y==len(state)-1:
-        count += state[y-1][x-1] + state[y-1][x] + state[y-1][x+1]
-        count += state[y][x-1] + state[y][x+1]
-        return count
-    
-    count += state[y-1][x-1] + state[y-1][x] + state[y-1][x+1]
-    count += state[y][x-1] + state[y][x+1]
-    count += state[y+1][x-1] + state[y+1][x] + state[y+1][x+1]
-    return count
-    
+    return count  
+            
     
 def next_state(init_state):
 
