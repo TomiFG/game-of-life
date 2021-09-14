@@ -96,6 +96,7 @@ if __name__ == '__main__':
     fps=5
     width = 50
     height = 50
+    state = None
     
     args = sys.argv[1:]
 
