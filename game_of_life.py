@@ -1,5 +1,7 @@
 from random import randint
 import time
+import sys
+import os
 
 def dead_state(width=0, height=0):
 
@@ -74,8 +76,12 @@ def next_state(init_state):
 
     return new_state
 
-def main(width=50, height=50, fps=5):
-    state = random_state(width, height) 
+def load_state(path):
+    with open(path, 'r') as f:
+        loaded_state = [[int(cell) for cell in line if cell!='\n'] for line in f]
+        return loaded_state
+        
+def main(state, fps=5):
     
     sleep_time = 1 / fps
 
@@ -84,5 +90,28 @@ def main(width=50, height=50, fps=5):
         state = next_state(state)
         time.sleep(sleep_time)
 
+
 if __name__ == '__main__':
-    main()
+    
+    fps=5
+    width = 50
+    height = 50
+    
+    args = sys.argv[1:]
+
+    if args:
+        if os.path.isfile(args[0]):
+            path = args[0]
+            try:
+                state = load_state(path)
+            except:
+                print("There was an issue loading the file.")
+
+        if args[-1].isdigit():
+            fps = int(args[1])
+
+    if not state:
+        state = random_state(width, height) 
+
+    main(state, fps)
+
