@@ -16,6 +16,7 @@ of 0s and 1s, representing dead and alive cells respectively. So feel free to ma
 
 ---
 ### The Gosper Glider Gun
+A particular initial state that produces a machine that "shoots" gliders across space.
 ![Gosper glider gun GIF](https://s9.gifyu.com/images/ezgif.com-gif-maker04f188b6a77287de.gif)
 ![Gosper glider gun](https://i.ibb.co/dPts5WZ/Gosper-Glider-Gun.png)
 ### A random state (T+0)
